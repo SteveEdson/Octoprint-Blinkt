@@ -48,7 +48,7 @@ class BlinktPlugin(octoprint.plugin.ProgressPlugin, octoprint.plugin.EventHandle
 
         for i in range(0, ledNum):
             self._logger.info("Setting " + str(i) + " to " + str(self._blinkt_r) + "," + str(self._blinkt_g) + "," + str(self._blinkt_b))
-            set_pixel(i, self._blinkt_r, self._blinkt_g, self._blinkt_b)
+            set_pixel(i, self._blinkt_r, self._blinkt_g, self._blinkt_b, 0.5)
 
         show()
 
