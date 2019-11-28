@@ -38,7 +38,7 @@ class BlinktPlugin(octoprint.plugin.ProgressPlugin, octoprint.plugin.EventHandle
     def _set_progress(self, progress):
         clear()
 
-        colors = cl.to_numeric( cl.scales['100']['div']['RdYlGn'] )
+        colors = cl.to_numeric( cl.scales['8']['div']['RdYlGn'] )
 
         ledNum = int(round((progress / 100) * 7))
 
