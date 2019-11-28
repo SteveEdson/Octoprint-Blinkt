@@ -1,7 +1,7 @@
 # coding=utf-8
 from __future__ import absolute_import, division
 
-from blinkt import set_pixel, set_brightness, show, clear
+from blinkt import set_pixel, set_brightness, show, clear, set_all
 import colorlover as cl
 
 
