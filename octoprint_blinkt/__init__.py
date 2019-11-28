@@ -13,10 +13,6 @@ class BlinktPlugin(octoprint.plugin.ProgressPlugin, octoprint.plugin.EventHandle
 
         self._logger.info("Received event " + event)
 
-        clear()
-        set_all(255, 255, 255, 1.0)
-        show()
-
         if event == "CaptureStart":
             clear()
             set_all(255, 255, 255, 1.0)
