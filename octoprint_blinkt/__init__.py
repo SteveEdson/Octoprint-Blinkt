@@ -20,22 +20,31 @@ class BlinktPlugin(octoprint.plugin.ProgressPlugin, octoprint.plugin.EventHandle
 
         if event == "CaptureDone":
             clear()
-            set_all(self._blinkt_r, self._blinkt_g, self._blinkt_b, 1.0)
+            # Restore the progress
+            self._set_progress(self._blinkt_progress)
+            show()
+
+        if event == "PrintDone":
+            clear()
             show()
 
     def on_print_progress(self, storage, path, progress):
 
         self._logger.info("Got progress")
         self._logger.info("On progress " + str(progress))
+        self._blinkt_progress = progress
+        self._set_progress(progress)
+
+    def _set_progress(self, progress):
         clear()
 
-        colors = cl.to_numeric( cl.scales['8']['div']['RdYlGn'] )
+        colors = cl.to_numeric( cl.scales['100']['div']['RdYlGn'] )
 
         ledNum = int(round((progress / 100) * 7))
 
-        self._blinkt_r = colors[ledNum][0]
-        self._blinkt_g = colors[ledNum][1]
-        self._blinkt_b = colors[ledNum][2]
+        self._blinkt_r = int(colors[ledNum][0])
+        self._blinkt_g = int(colors[ledNum][1])
+        self._blinkt_b = int(colors[ledNum][2])
 
         for i in range(0, ledNum):
             self._logger.info("Setting " + str(i) + " to " + str(self._blinkt_r) + "," + str(self._blinkt_g) + "," + str(self._blinkt_b))
